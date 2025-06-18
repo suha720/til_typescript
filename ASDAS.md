@@ -1,52 +1,3 @@
-# NVM 의 설치 및 이해
-- Node Version Manager
-- Node.js 버전을 자유롭게 관리
-- 각 프로젝트 및 회사마다 Node.js 버전 차이
-- Node.js 는 로컬 PC 에서 js 를 실행 및 개발 가능하도록 지원
-
-## 1. 참조 사이트
-- https://jang8584.tistory.com/295
-- https://fabric0de.tistory.com/43
-
-## 2. 설치
-- https://github.com/coreybutler/nvm-windows/releases
-
-## 3. NVM 사용 명령어
-- 버전 확인
-```bash
-nvm version
-nvm -v
-```
-- node 목록 확인하기
-```bash
-nvm ls
-```
-- node 전체 버전 확인하기
-```bash
-nvm list available
-```
-- NVM 을 이용해서 특정 버전 Node 설치
-```bash
-nvm install 18.18.2
-```
-- NVM 으로 사용 버전 변경
-```bash
-nvm use 18.18.2
-```
-- NVM 으로 node 특정 버전 삭제하기ㅏ
-```bash
-nvm uninstall 18.18.2
-nvm ls
-```
-
-
-- Git 관리
-    1. README.MD
-    2. git init
-    3. Git 연결, remote
-    4. git remote -v : 제대로 연결되었는지 확인하기
-
-
 # TypeScript 의 이해
 
 ## 1. 참조 사이트
@@ -353,23 +304,4 @@ export const hello = (msg:string|number) => {
 ```
 
 ### 7.7. moduleDetection 옵션
-- `ts 파일간 중복 선언 에러` 제어
-- TypeScript 는 기본적으로 전역 모듈로 인식함.
-```json
-// 각 파일에 변수명이 같아도 OK
-{
-  "include": ["src/**/*"],
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "outDir": "./dist",
-    "strict": true,
-    "moduleDetection": "force"
-  }
-}
-```
-
-## 8. tsconfing.json 정리
-- React 프로젝트, Next 프로젝트, Express 프로젝트, Nest 프로젝트 등
-- 모두 TypeScript 로 작성 권장됨.
-- tsconfig.json 이 상당히 중요합니다.
+- 중복 선언 에러 안내
