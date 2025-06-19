@@ -1,9 +1,24 @@
-let neverVar: never = 100;
-// 전달시 unknow 은 타입오류 발생
-let neverVar2: never = false;
-let neverVar3: never = undefined;
-let neverVar4: never = null;
+// type Good = {
+//     title: string;
+//     price: number;
+//     sale: boolean;
+// };
 
-let a = "";
-let b = 0;
-let c:number = 1;
+interface Good {
+    title: string;
+    price: number;
+    sale: boolean;
+};
+
+
+const goodArr:Good[] = [
+    {title: "사과", price: 1000, sale: true},
+    {title: "딸기", price: 3000, sale: false},
+    {title: "바나나", price: 5000, sale: true},
+]
+
+const goodArrG:Array<Good> = [
+    {title: "사과", price: 1000, sale: true},
+    {title: "딸기", price: 3000, sale: false},
+    {title: "바나나", price: 5000, sale: true},
+]
