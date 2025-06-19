@@ -446,9 +446,21 @@ const num_7: number = NaN;
 const str_1 = "안녕";
 const str_2: string = "안녕";
 let str_3: string = "밥밥밥";
+const str_4: string = `백틱`;
 ```
 
 ## 3. boolean 타입
+- 프로그래밍에서 false 처럼 사용되는 값(falshy 한 값)
+- 아래의 경우는 falshy 하다고 판단하여 false 로 인정
+```txt
+false
+""         비어있는 문자열은 if문 등에 사용 할때 false 로 판단
+0          숫자 0은 if문 등애 사용 할때 false 로 판단
+null       if문 등애 사용 할때 false 로 판단
+undefined  if문 등애 사용 할때 false 로 판단
+NaN        if문 등애 사용 할때 false 로 판단
+
+```
 
 ```ts
 const bool_1 = false;
@@ -458,7 +470,7 @@ let bool_3: boolean = false;
 
 ## 4. null 타입
 
-- 프로그래머가 변수에 값이 비었음을 표현
+- 프로그래머가 변수에 `값이 비었음`을 표현
 
 ```ts
 const null_1 = null;
@@ -468,6 +480,7 @@ let null_2: null = null;
 ## 5. undefined 타입
 
 - 프로그램이 초기값으로 세팅함
+- 값이 없다. 즉, 정의가 안되어 있다.
 
 ```ts
 let user: undefined = undefined;
@@ -507,7 +520,7 @@ let b: "안녕" = "안녕";
 let c: true = true;
 ```
 
-## 8. 정말 중복되지 않은 유일한 값
+## 8. 정말 `중복되지 않은 유일한 값`
 
 ```ts
 const sy = Symbol("age");
@@ -575,7 +588,7 @@ let testNum: number = unknownVar;
 ```
 
 ### 10.3. never 타입
-
+- 에러 전용
 - 어떤 것도 담을 수 없고,
 - 어떤 곳에도 전달 수도 없는 타입
 - 절대로 결과가 나오지 않는 함수의 리턴 데이터 종류
