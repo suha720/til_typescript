@@ -1,260 +1,240 @@
-# 연산
+# 조건문(Condition)
 
-## 1. 사칙연산과 나머지 연산
+## 1. if 문
 
-- `+ 연산`
-
-```js
-// + 연산
-const a: number = 0;
-const b: number = 5;
-const c: number = a + b; // 5
-
-// 글자 + 글자
-const str_a: string = "Hi";
-const str_b: string = "!!";
-const str_c: string = str_a + str + b; // Hi!!
-
-// 글자 + 숫자
-const str_a: string = "go";
-const num_b: number = 3;
-const result: string = str_a + num_b; // "go3"
-
-// 글자 + 글자
-const str_a: string = "100";
-const str_b: string = "999";
-const result: string = str_a + str_b; // 100999
-
-// 연산자 줄이기
-let a: number = 1;
-a = a + 1;
-a += 1;
-a++;
-```
-
-- `- 연산`
+- 조건의 결과가 true 이면 { 안쪽 실행}
 
 ```ts
-const a: number = 0;
-const b: number = 1;
-const c: number = a - b;
-
-// 글자 - 글자
-const a: string = "안녕"; // 숫자 변경 가능하니?
-const b: string = "반가워";
-const c: number = a - b; // NaN
-
-// case 1 : 글자 - 숫자
-const a: string = "안녕";
-const b: number = 5;
-const c: number = a - b; // NaN
-
-// case 2 : 글자 - 숫자
-const a: string = "100"; // 숫자 변경 가능하니?
-const b: number = 5;
-const c: number = a - b; // 95
-
-// 연산자 줄이기
-let a: number = 1;
-a = a - 1;
-a -= 1;
-a--;
-```
-
-- `* 연산`
-
-```ts
-const a: number = 0;
-const b: number = 1;
-const c: number = a * b;
-
-// 글자 - 글자
-const a: string = "안녕"; // 숫자 변경 가능하니?
-const b: string = "반가워";
-const c: number = a * b; // NaN
-
-// case 1 : 글자 - 숫자
-const a: string = "안녕";
-const b: number = 5;
-const c: number = a * b; // NaN
-
-// case 2 : 글자 - 숫자
-const a: string = "100"; // 숫자 변경 가능하니?
-const b: number = 5;
-const c: number = a * b; // 500
-
-// 연산자 줄이기
-let a:number = 1;
-a = a 8 1;
-a *= 1;
-```
-
-- `/ 연산`
-
-```ts
-const a: number = 0;
-const b: number = 1;
-const c: number = a / b;
-
-// 글자 - 글자
-const a: string = "안녕"; // 숫자 변경 가능하니?
-const b: string = "반가워";
-const c: number = a / b; // NaN
-
-// case 1 : 글자 - 숫자
-const a: string = "안녕";
-const b: number = 5;
-const c: number = a / b; // NaN
-
-// case 2 : 글자 - 숫자
-const a: string = "100"; // 숫자 변경 가능하니?
-const b: number = 5;
-const c: number = a / b; // 20
-
-// 연산자 줄이기
-let a: number = 5;
-a = a / 1;
-a /= 1;
-```
-
-- `% 연산`
-
-```ts
-const a: number = 0;
-const b: number = 1;
-const c: number = a % b;
-
-// 글자 - 글자
-const a: string = "안녕"; // 숫자 변경 가능하니?
-const b: string = "반가워";
-const c: number = a % b; // NaN
-
-// case 1 : 글자 - 숫자
-const a: string = "안녕";
-const b: number = 5;
-const c: number = a % b; // NaN
-
-// case 2 : 글자 - 숫자
-const a: string = "100"; // 숫자 변경 가능하니?
-const b: number = 5;
-const c: number = a % b; // 0
-
-// 연산자 줄이기
-let a: number = 5;
-a = a % 1;
-a %= 1;
-```
-
-## 2. 논리 연산자
-
-- true 와 false 판단'
-- falshy 한 판단
-  - ` false 0 null underfined "", NaN`
-
-```ts
-// OR 연산자(또는) : 하나만 true 이면 된다
-const result: result = true || true;
-
-const lsLogin: boolean = false;
-// true 출력이 아니라, true 값인 div 태그가 result에 담김
-const result: boolean | string = lsLogin || "<div>로그인 하세요</div>";
-
-// AND 연산자(그리고) : 둘다 true 이면 된다
-const result: result = true && true;
-
-const lsLogin: boolean = true;
-//true 출력이 아니라, true 값인 div 태그가 result에 담김
-const result: boolean | string = lsLogin && "<div>어서오세요</div>";
-
-// NOT 연산자(반대)
-const a: boolean = !true; // false
-
-// 토글 버튼 만들기
-let isLogin: boolean = false;
-button.addEventListener("click", function () {
-  isLogin = !isLogin;
-});
-
-// XOR 연산자(그리고) : 둘다 true 이면 된다
-```
-
-## 3. 비교 연산자 (결과는 true, false 가 나옴)
-
-```ts
-let result: boolean = 1 > 2;
-let result: boolean = 1 >= 2;
-let result: boolean = 1 == 2;
-let result: boolean = 1 != 2;
-
-// 동치 연산자, 타입과 값 모두 비교함
-let result: boolean = 1 === 2;
-let result: boolean = 1 !== 2;
-```
-
-## 4. 3항 연산자 (if문 줄여쓰기)
-
-```ts
-const str: string = 1 > 3 ? "true 네용" : "false 네용";
-```
-
-## 5. 병합 연산자 (최신 문법)
-
-- 기본 값을 세팅 할 때 활용
-- null, undefined 가 아닌 것을 찾아서 세팅함.
-
-```ts
-let userName: string; // 현재 undefiend, 값을 안넣어줘서
-let displayName: string = userName ?? "Guest"; // undefiend 이거나 null일때 초기값인 Guest 임
-
-let userName: string = "A"; // 현재 A
-let displayName: string = userName ?? "Guest"; // 현재 A 임
-```
-
-## 6. 옵셔널체이닝 (최신 문법 - `?.`)
-
-- 객체가 존재하는가? 체크
-
-```ts
-const userInfo = { age: 12, name: "학수" };
-const age = userInfo?.age;
-const anamege = userInfo?.name;
-const acity = userInfo?.city; // undefined 또는 null
-
-const userInfo = { age: 12, name: "hong" };
-let age;
-if (userInfo.age) {
-  age = userInfo.age;
-}
-let name;
-if (userInfo.name) {
-  name = userInfo.name;
-}
-let city;
-if (userInfo.city) {
-  city = userInfo.city;
+const age: number = 18;
+if (a >= 18) {
+  console.log("성인입니다.");
 }
 ```
 
-## 7. typeof 연산자 (데이터 타입을 알려줘 )
+- 만약 { 한줄만 실행 한다면}
 
 ```ts
-console.log(typeof 123); // number
-console.log(typeof "hello"); // string
-console.log(typeof true); // boolean
+// 참고, 축약 가능
+const age: number = 18;
+if (a >= 18) console.log("성인입니다.");
+```
 
-const age: number = 123;
-console.log(typeof age); // number;
+- if ~ else 구문
+
+```ts
+const age: number = 10;
+if (a >= 18) {
+  console.log("성인입니다.");
+} else {
+  console.log("청소년입니다.");
+}
+```
+
+- if ~ else if ~ else if ~ else 구문
+
+```ts
+const age: number = 25;
+if (a >= 40) {
+  console.log("40대 입니다.");
+} else if (a >= 30) {
+  console.log("30대 입니다.");
+} else if (a >= 20) {
+  console.log("20대 입니다.");
+} else {
+  console.log("미성년자 입니다.");
+}
+```
+
+## 2. switch 문
+
+- 값이 일치하는지를 비교해서 코드 분기
+
+```ts
+const lever: string = "5층";
+switch (lever) {
+  case "5층":
+    console.log("5층 입니다.");
+    break;
+  case "4층":
+    console.log("4층 입니다.");
+    break;
+  case "3층":
+    console.log("3층 입니다.");
+    break;
+  case "2층":
+    console.log("2층 입니다.");
+    break;
+  case "1층":
+    console.log("1층 입니다.");
+    break;
+  default:
+    console.log("아무 층이나 누르세요.");
+    break;
+}
+```
+
+- switch 문의 값은 직접 원시값으로 작성시 오류발생이 가능
+- TypeScript 에 있는 `enum` 을 사용하시길 권장
+- enum 은 정해진 값만 사용하게 권장할 때(열거형)
+- 인터넷 상태 등에 대한 내용을 코드 할때 많이 사용
+
+```ts
+enum Level {
+  L1 = "1층",
+  L2 = "2층",
+  L3 = "3층",
+  L4 = "4층",
+  L5 = "5층",
+}
+
+const Level: string = "5층";
+switch (Level) {
+  case Level.L5:
+    console.log("5층 입니다.");
+    break;
+  case Level.L4:
+    console.log("4층 입니다.");
+    break;
+  case Level.L3:
+    console.log("3층 입니다.");
+    break;
+  case Level.L2:
+    console.log("2층 입니다.");
+    break;
+  case Level.L1:
+    console.log("1층 입니다.");
+    break;
+  default:
+    console.log("아무 층이나 누르세요.");
+    break;
+}
+```
+
+- 네트워크 상태를 체크해 보자
+
+```ts
+enum NetworkStatus {
+  offline = "Off",
+  Wifi = "Wifi",
+  LTE = "LTE",
+  G5 = "5G",
+}
+
+const net = NetworkStatus.G5;
+switch (net) {
+  case NetworkStatus.G5:
+    break;
+  case NetworkStatus.LTE:
+    break;
+  case NetworkStatus.Wifi:
+    break;
+  case NetworkStatus.offline:
+    break;
+}
+```
+
+# 반복문(Loop)
+
+- 조건이 참이면 코드를 반복 실행함.
+
+## 1. for
+
+- 조건이 참 이면서 반복 횟수를 알때 사용함
+
+```ts
+const 반복횟수: number = 10;
+for (let i: number = 0; i < 반복횟수; i++) {
+  // 코드 실행
+}
 
 const arr: number[] = [1, 2, 3];
-console.log(typeof arr); // number[]; 실제로는 obj 라고 출력됨
+for (let i = 0; i < arr.length; i++) {
+  arr[i];
+}
 
-const obj: { age: number } = { age: 10 };
-console.log(typeof obj); // {age:number}; 실제로는 obj 라고 출력됨
+const num: number = 10;
+for (let i: number = 0; i < num; i++) {
+  if (i === 5) {
+    break;
+  }
+  // 실행코드
+}
 
-type T = { age: number };
-const obj: T = { age: 10 };
-console.log(typeof obj); // T; 실제로는 obj 라고 출력됨
+const num: number = 10;
+for (let i: number = 0; i < num; i++) {
+  if (i === 5) {
+    continue; // 실행 코드를 건너띄고 계속 반복
+  }
+  // 실행코드
+}
+
+const num: number = 10;
+for (let i: number = 0; i < num; i++) {
+  for (let j: number = 0; i < 5; j++) {
+    if (j === 2) {
+      break;
+    }
+    console.log("Hi");
+  }
+}
 ```
 
-- `기본형을 제외하고 참조형 데이터들은 직접 비교를 하는 방안을 찾아야한다.`
-  - 타입 좁히기(Type Guard) 문법, 유틸리티 타입 사용 문법 등의 학습 필요.
+## 2. while
+
+- `조건이 참` 이면서 `반복 횟수를 모를 때` 사용함
+
+```ts
+let count: number = 0;
+while (count < 5) {
+  console.log(count);
+  // 반드시 조건을 거짓으로 만들도록 코드 필요.
+  count++;
+}
+```
+
+## 3. do while
+
+- `일단 한번은 실행`하자. 그리고, `조건이 참` 이면서 반복 횟수를 모를 때 사용함
+
+```ts
+// 아래 코드는 한번도 실행되지 않는다. 조건이 거짓이므로
+let count: number = 5;
+while (count < 5) {
+  console.log(count);
+  // 반드시 조건을 거짓으로 만들도록 코드 필요.
+  count++;
+}
+
+let tries: number = 0;
+do {
+  // 코드 실행
+  // 무한 루프 방지 거짓을 만들 값
+  tries++;
+} while (tries < 5);
+```
+
+## 4. for ... of
+
+- 배열의 각각의 요소에 값을 알아낼 때
+
+```ts
+const arr: number[] = [1, 2, 3];
+for (let i = 0; i < arr.length; i++) {
+  arr[i];
+}
+
+for (let item of arr) {
+  item; // 1 => 2 => 3
+}
+```
+
+## 5. for ... in
+
+- `객체`의 `속성명`을 알아낼 때
+```ts
+const gang = {age: 10, city: "daegu"};
+for (let key in gang) {
+  key; // age => city
+  gang[key]; // 10 => "daegu"
+}
+```
