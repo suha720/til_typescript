@@ -1,14 +1,10 @@
-type MemberType = {
-  userName: string;
-  age: number;
-  group: string;
-};
-const member: MemberType = { userName: "뷔", age: 30, group: "BTS" };
-// const { userName, age, group } = member;
+class MathTool {
+  static PI: number = 3.14;
+  static multi(x: number, y: number) {
+    return x * y;
+  }
+}
 
-const { ...rest }: MemberType = member;
-console.log(rest);
-
-const { userName, ...who }: MemberType = member;
-console.log(userName);
-console.log(who);
+// new 없이 사용하기, 클래스 안에 사용할 속성과 메서드에 `static`을 붙인다.
+MathTool.PI;
+MathTool.multi(4, 8);
