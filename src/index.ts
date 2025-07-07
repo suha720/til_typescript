@@ -1,24 +1,28 @@
-class MathTool {
-  static PI: number = 3.14;
-  static multi(x: number, y: number) {
-    return x * y;
+type Method = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+
+async function getData<T>(
+  addr: string,
+  method: Method
+): Promise<T | undefined> {
+  const url: string = `https://jsonplaceholder.typicode.com/${addr}`;
+  try {
+    const response: Response = await fetch(url, { method });
+    if (response.ok) {
+      const result: T = await response.json();
+      return result;
+    }
+  } catch (error) {
+    console.log(error);
   }
 }
-
-// new 없이 사용하기, 클래스 안에 사용할 속성과 메서드에 `static`을 붙인다.
-MathTool.PI;
-MathTool.multi(4, 8);
-type UserType = { age: number; study: boolean };
-const hong: UserType = { age: 10, study: true };
-const kim: UserType = { age: 20, study: false };
-const park: UserType = { age: 22, study: true };
-const 학생목록배열: UserType[] = [hong, kim, park];
-const 공부한사람배열: UserType[] = 학생목록배열.filter(function (
-  요소: UserType,
-  인덱스: number,
-  원본배열: UserType[]
-) {
-  if (요소.study) {
-    return 요소;
+// 전체 POSTS 글 가져오기
+type PostType = { userId:number, id:number, title:string, body:string}
+type AlbumType = { userId:number, id:number, title:string}
+async function getPosts() {
+  try {
+    const res = await getData<PostType[]>("posts", "GET");
+    const res2 = await getData<AlbumType[]>("albums", "GET");
+  } catch (error) {
+    console.log(`${error}가 발생하였습니다.`);
   }
-});
+}
