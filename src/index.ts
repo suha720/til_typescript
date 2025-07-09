@@ -1,31 +1,15 @@
-interface Animal {
-  name: string;
-}
-const ani: Animal = {
-  name: "홍길동",
-};
-
-interface Dog extends Animal {
-  bark(): void;
-}
-const dog: Dog = {
-  name: "댕댕이",
-  bark: () => console.log("멍멍"),
-};
-
-interface Cat extends Animal {
-  cry(): void;
-}
-const cat: Cat = {
-  name: "야옹이",
-  cry: () => console.log("야옹"),
-};
-
-interface Person extends Animal {
-  say(): void;
+interface 약속 {
+  이름: string;
 }
 
-const iu: Person = {
-  name: "아이유",
-  say: () => console.log("안녕"),
+class 사람 implements 약속 {
+  이름: string;
+}
+
+type 약속타입 = {
+  이름: string;
 };
+
+class 강아지 implements 약속타입 {
+  이름: string;
+}
