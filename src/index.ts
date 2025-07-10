@@ -1,15 +1,5 @@
-interface 약속 {
-  이름: string;
+function mergeArr<T, U>(arr1: T[], arr2: U[]): (T | U)[] {
+  return [...arr1, ...arr2];
 }
+let result: (string | number)[] = mergeArr([1, 2, 3], ["a", "b", "c"]);
 
-class 사람 implements 약속 {
-  이름: string;
-}
-
-type 약속타입 = {
-  이름: string;
-};
-
-class 강아지 implements 약속타입 {
-  이름: string;
-}
