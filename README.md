@@ -1,157 +1,92 @@
-# ts 심화 - Key Value Mapping
+# ts 심화 - 클래스 정의하기
 
-- 객체의 키명과 값을 자동으로 맞추어주기(맵핑)
-
-## 샘플코드
-
-- 문제상황 1
+- `new` 해서 새로운 `인스턴스 변수 타입 정의`
 
 ```ts
-// 백엔드 데이터 호출 관련한 타입 정의
-// 불편함 : 오타 발생 소지
-// 불편함 : 하나의 값을 변경하면 모두 찾아서 변경해야 함.
-type GlobalApiStatus = {
-  getUser: "Loading" | "Success" | "Error" | "Done";
-  getPageNum: "Loading" | "Success" | "Error" | "Done";
-  getPost: "Loading" | "Success" | "Error" | "Done";
-};
-```
-
-- 문제상황 1 개선을 위해서 enum
-
-```ts
-// 백엔드 데이터 호출 관련한 타입 정의
-// 불편함 : 오타 발생 소지 개선
-// 불편함 : 하나의 값을 변경하면 모두 찾아서 변경해야 개선
-enum State {
-  LOADING = "Loading",
-  SUCCESS = "Success",
-  ERROR = "Error",
-  DONE = "Done",
+// 클래스 만들기
+class SampleClass {}
+// 클래스로 인스턴스 변수 만들기(타입추론 잘됨)
+const ins = new SampleClass();
+// 클래스는 속성과 메서드 존재함.
+class Game {
+  name: string;
+  contry: string;
+  download: number;
 }
-
-type GlobalApiStatus = {
-  getUser: State;
-  getPageNum: State;
-  getPost: State;
-};
-```
-
-- 문제상황 2
-  - `값은 코드개선으로 enum 을 사용하여 효율성`을 올려줌
-  - 그러나 `키명은 오타`를 내거나, `키명시 변경`시 적용 부분이 개선하지 못함.
-
-```ts
-// 백엔드 데이터 호출 관련한 타입 정의
-// 불편함 : 오타 발생 소지 개선
-// 불편함 : 하나의 값을 변경하면 모두 찾아서 변경해야 개선
-enum State {
-  LOADING = "Loading",
-  SUCCESS = "Success",
-  ERROR = "Error",
-  DONE = "Done",
-}
-
-type GlobalApiStatus = {
-  getUser: State;
-  getPageNum: State;
-  getPost: State;
-};
-
-// 아래의 방식으로 나만의 타입을 정의할 수 있다.
-// 여전히 문제사항은 개선되지 않음.
-type UserGetApi = {
-  getUser: GlobalApiStatus["getUser"];
-  getPageNum: GlobalApiStatus["getPageNum"];
-  getPost: GlobalApiStatus["getPost"];
-};
-// 자동으로 키명을 받아올 수 있다면? 오타 줄임, 코드 개선 효율적
-// 위의 코드와 완벽히 동일한 코드가 된다.
-type UserGetApiAuto = {
-  // 맵핑을 사용하면 된다.
-  [key in "getUser" | "getPageNum" | "getPost"]: GlobalApiStatus[key];
-};
-```
-
-- 위의 코드 역시 상당히 문법적으로 복잡하고, 가독성도 떨어짐
-- 유틸리티를 이용해 봄.
-
-```ts
-// Utility 를 활용해 보자.
-// 추출하기
-type UserGetApiPick = Pick<
-  GlobalApiStatus,
-  "getUser" | "getPageNum" | "getPost"
->;
-// 제외하기
-type UserGetApiOmit = Omit<GlobalApiStatus, "getPost">;
-```
-
-## keyof 활용하기
-
-```ts
-// keyof 이용하기 : 객체 타입에서 키명만 추출 가능
-type UserGetApiAll = keyof GlobalApiStatus;
-const key1: UserGetApiAll = "getUser";
-const key2: UserGetApiAll = "getPost";
-const key3: UserGetApiAll = "getPageNum";
-```
-
-```ts
-// 모두 가져오기
-// 오타를 줄여줌. 자동으로 속성명과 타입을 추출해줌
-/**
- *  {
-      getUser: State;
-      getPageNum: State;
-      getPost: State;
-  }
- */
-type UserGetApiAll2 = {
-  [key in keyof GlobalApiStatus]: GlobalApiStatus[key];
-};
-```
-
-```ts
-// utility 를 사용해서 원하는 항목만 제거하기
 /**
  * {
-      getUser: State;
-      getPageNum: State;
-  }
+ *    name: string;
+ *    contry: string;
+ *    download: number;
+ * }
  */
-type UserGetApiAll3 = {
-  [key in Exclude<keyof GlobalApiStatus, "getPost">]: GlobalApiStatus[key];
-};
+const game = new Game();
+// 사용자가 직접 값을 달아줌.
+game.name = "포트리스";
+game.contry = "한국";
+game.download = 100;
 ```
 
 ```ts
-// 원하는 속성의 이름과 타입을 추출했는데 나는 옵셔널 로 설정하고 싶다.
+// 클래스 만들기
+class SampleClass {}
+// 클래스로 인스턴스 변수 만들기(타입추론 잘됨)
+const ins = new SampleClass();
+// 클래스는 속성과 메서드 존재함.
+class Game {
+  name: string;
+  contry: string;
+  download: number;
+  // new 붙여서 실행하면 결과로 인스턴스 생성자
+  constructor(name: string, contry: string, download: number) {
+    this.name = name;
+    this.contry = contry;
+    this.download = download;
+  }
+}
 /**
  * {
-    getUser?: State;
-    getPageNum?: State;
-} 
-    */
-type UserGetApiAll4 = {
-  [key in Exclude<keyof GlobalApiStatus, "getPost">]?: GlobalApiStatus[key];
-};
+ *    name: string;
+ *    contry: string;
+ *    download: number;
+ * }
+ */
+const game = new Game("포트리스", "한국", 100);
 ```
 
-## 예제
-
 ```ts
-interface LoadingState {
-  type: "loading";
-  data: string[];
-}
+// 클래스 만들기
+class SampleClass {}
+// 클래스로 인스턴스 변수 만들기(타입추론 잘됨)
+const ins = new SampleClass();
+// 클래스는 속성과 메서드 존재함.
+class Game {
+  //  속성
+  name: string;
+  contry: string;
+  download: number;
+  // new 붙여서 실행하면 결과로 인스턴스 생성자, 인스턴스 생성자
+  constructor(name: string, contry: string, download: number) {
+    this.name = name;
+    this.contry = contry;
+    this.download = download;
+  }
 
-interface ErrprState {
-  type: "error";
-  message: string[];
+  // 메서드
+  introduce() {
+    return "${this.name} 게임은 ${this.contry} 에서 개발, ${this.download} 인기가 있습니다";
+  }
 }
-
-type FetchStatus = LoadingState | ErrprState;
-// type StatusType = "loading" | "error";
-type StatusType = FetchStatus["type"];
+/**
+ * {
+ *    name: string;
+ *    contry: string;
+ *    download: number;
+ *    introduce(): number
+ * }
+ */
+const game = new Game("포트리스", "한국", 100);
+console.log(game.name);
+console.log(game.contry);
+console.log(game.download);
 ```
